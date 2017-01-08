@@ -6,8 +6,7 @@
   </head>
   <body>
     <h3><time id="time">00:00:00</time></h3>
-    <button id="start">Start</button>
-    <button id="stop">Pause</button>
+    <h5 id="oldTimes"></h5>
     <script>
       let minutes = 0;
       let seconds = 0;
@@ -15,6 +14,8 @@
       let time = document.querySelector('#time');
       let t;
       let verifyTimer = 0;
+      let timesHistory = [];
+      let timesHistoryFinal = document.querySelector('#oldTimes');
 
       function add(){
         mseconds++;
@@ -44,6 +45,16 @@
         clearInterval(t);
       }
 
+
+      function debugArray(value){
+        console.log(value);
+      }
+
+      function refreshTimes(array){
+        let times = array.join(' - ');
+        timesHistoryFinal.innerHTML = times;
+      }
+
       //Checar se o espaco foi apertado para liberar ou parar o cronometro
       document.addEventListener('keyup', (e) => {
         var keyCode = e.keyCode;
@@ -58,6 +69,10 @@
         else if(keyCode == 32 && verifyTimer === 1){
             stopTimer();
             verifyTimer = 0;
+            let timeNow = time.innerHTML;
+            timesHistory.push(timeNow);
+            //timesHistory.forEach(debugArray);
+            refreshTimes(timesHistory);
         }
       });
 
