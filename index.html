@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testando</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h3><time id="time">00:00:00</time></h3>
+    <button id="start">Start</button>
+    <button id="stop">Pause</button>
+    <script>
+      let minutes = 0;
+      let seconds = 0;
+      let mseconds = 0;
+      let time = document.querySelector('#time');
+      let t;
+      let verifyTimer = 0;
+
+      function add(){
+        mseconds++;
+        //Transformar milliseconds em seconds
+        if (mseconds === 100){
+          seconds++;
+          mseconds = 0;
+        }
+        //Transformar seconds em minutes
+        if (seconds === 60){
+          minutes++;
+          seconds = 0;
+        }
+
+        //Altera o tempo.
+        time.innerHTML = (minutes >= 10?minutes:'0'+minutes)+':'+(seconds >= 10?seconds:'0'+seconds)+':'+(mseconds >= 10?mseconds:'0'+mseconds);
+        startTimer();
+      }
+
+      //Funcao para iniciar o tempo
+      function startTimer () {
+        t = setTimeout(add, 10);
+      }
+
+      //Funcao para parar o tempo
+      function stopTimer () {
+        clearInterval(t);
+      }
+
+      //Checar se o espaco foi apertado para liberar ou parar o cronometro
+      document.addEventListener('keyup', (e) => {
+        var keyCode = e.keyCode;
+        if(keyCode == 32 && verifyTimer === 0){
+          time.innerHTML = '00:00:00';
+          mseconds = 0;
+          seconds = 0;
+          minutes = 0;
+          startTimer();
+          verifyTimer = 1;
+        }
+        else if(keyCode == 32 && verifyTimer === 1){
+            stopTimer();
+            verifyTimer = 0;
+        }
+      });
+
+
+    </script>
+  </body>
+</html>
