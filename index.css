@@ -1,0 +1,54 @@
+body {
+  background: #181818;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 5em;
+}
+
+
+.divTimer {
+  border: 1px solid white;
+  width: 60%;
+  float: left;
+  height: 10em;
+}
+
+.timer {
+  color: white;
+  text-align: center;
+  font-size: 50px;
+}
+
+.divOldTimes{
+  border: 1px solid white;
+  width: 39%;
+  height: 10em;
+  float: left;
+  padding-left: 5px;
+  overflow: auto;
+}
+
+.oldTimers {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+
+}
+
+.divScramble {
+  border: 1px solid white;
+  width: 99.55%;
+  float: left;
+  height: 35px;
+}
+
+.scrambles {
+  color: white;
+  margin-top: -0.1px;
+  padding-top: 5px;
+  font-size: 20px;
+  text-align: center;
+}

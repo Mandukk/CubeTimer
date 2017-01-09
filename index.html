@@ -3,12 +3,23 @@
   <head>
     <title>Testando</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
   </head>
   <body>
-    <h3><time id="time">00:00:00</time></h3>
-    <h5 id="oldTimes"></h5>
+    <h1 class="title">CubeTimer</h1>
+    <div class="divTimerAndOldTimes">
+      <div class="divTimer">
+        <h3 class="timer"><time id="time" >0.00</time></h3>
+      </div>
+      <div class="divOldTimes">
+        <h5 id="oldTimes" class="oldTimers"></h5>
+      </div>
+      <div class="divScramble">
+        <h5 id="scrambles" class="scrambles">R2 D L2 R2 B F' R' D' R' U2 F' D B2 L' D2 B U2 B D U2 R2 U2 R2 D L'</h5>
+      </div>
+    </div>
+
     <script>
-      let minutes = 0;
       let seconds = 0;
       let mseconds = 0;
       let time = document.querySelector('#time');
@@ -24,15 +35,55 @@
           seconds++;
           mseconds = 0;
         }
-        //Transformar seconds em minutes
-        if (seconds === 60){
-          minutes++;
-          seconds = 0;
-        }
-
         //Altera o tempo.
-        time.innerHTML = (minutes >= 10?minutes:'0'+minutes)+':'+(seconds >= 10?seconds:'0'+seconds)+':'+(mseconds >= 10?mseconds:'0'+mseconds);
+        time.innerHTML = seconds+'.'+(mseconds >= 10?mseconds:'0'+mseconds);
         startTimer();
+      }
+
+      //Funcao para gerar o scramble
+      function getScramble(){
+        let scrambleLength = 25;
+        let scramble = [];
+        let scrambleMovesU = ['U','U`','U2'];
+        let scrambleMovesF = ['F','F`','F2'];
+        let scrambleMovesD = ['D','D`','D2'];
+        let scrambleMovesB = ['B','B`','B2'];
+        let scrambleMovesL = ['L','L`','L2'];
+        let scrambleMovesR = ['R','R`','R2'];
+        for(let i = 0; i < scrambleLength; i++){
+          let randomMove = Math.floor(Math.random() * 6) + 1;
+          if(randomMove === 1 && randomMoveOld != 1){
+            let move = scrambleMovesU[Math.floor(Math.random() * 3) + 1];
+            scramble.push(move);
+            let randomMoveOld = randomMove;
+          }
+          if(randomMove === 2 && randomMoveOld != 2){
+            let move = scrambleMovesF[Math.floor(Math.random() * 3) + 1];
+            scramble.push(move);
+            let randomMoveOld = randomMove;
+          }
+          if(randomMove === 3 && randomMoveOld != 3){
+            let move = scrambleMovesD[Math.floor(Math.random() * 3) + 1];
+            scramble.push(move);
+            let randomMoveOld = randomMove;
+          }
+          if(randomMove === 4 && randomMoveOld != 4){
+            let move = scrambleMovesB[Math.floor(Math.random() * 3) + 1];
+            scramble.push(move);
+            let randomMoveOld = randomMove;
+          }
+          if(randomMove === 5 && randomMoveOld != 5){
+            let move = scrambleMovesL[Math.floor(Math.random() * 3) + 1];
+            scramble.push(move);
+            let randomMoveOld = randomMove;
+          }
+          if(randomMove === 6 && randomMoveOld != 6){
+            let move = scrambleMovesR[Math.floor(Math.random() * 3) + 1];
+            scramble.push(move);
+            let randomMoveOld = randomMove;
+          }
+
+        }
       }
 
       //Funcao para iniciar o tempo
@@ -51,7 +102,7 @@
       }
 
       function refreshTimes(array){
-        let times = array.join(' - ');
+        let times = array.join(',  ');
         timesHistoryFinal.innerHTML = times;
       }
 
@@ -59,12 +110,13 @@
       document.addEventListener('keyup', (e) => {
         var keyCode = e.keyCode;
         if(keyCode == 32 && verifyTimer === 0){
-          time.innerHTML = '00:00:00';
+          time.innerHTML = '0.00';
           mseconds = 0;
           seconds = 0;
           minutes = 0;
           startTimer();
           verifyTimer = 1;
+          getScramble();
         }
         else if(keyCode == 32 && verifyTimer === 1){
             stopTimer();
