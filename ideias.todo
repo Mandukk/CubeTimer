@@ -19,4 +19,4 @@ Ideias:
 
   ☐ Criar um sistema para calcular medias (avg5, avg12, avg TOTAL)
   ☐ Armazenar todos os tempos para que quando atualize a pagina ou entre denovo, nao perca-os
-      //Para isso, tentar usar cookies com javaScript, ou banco de dados com php ou node.js(boa sorte com node.js!)
+      //Para isso, tentar usar cookies com javaScript, ou banco de dados com php, ruby ou node.js(boa sorte com node.js!)
