@@ -15,11 +15,15 @@
         <h5 id="oldTimes" class="oldTimers"></h5>
       </div>
       <div class="divScramble">
-        <h5 id="scrambles" class="scrambles">R2 D L2 R2 B F' R' D' R' U2 F' D B2 L' D2 B U2 B D U2 R2 U2 R2 D L'</h5>
+        <h5 id="scrambles" class="scrambles"></h5>
       </div>
     </div>
 
     <script>
+
+      window.onload = getScramble();
+
+
       let seconds = 0;
       let mseconds = 0;
       let time = document.querySelector('#time');
@@ -50,40 +54,46 @@
         let scrambleMovesB = ['B','B`','B2'];
         let scrambleMovesL = ['L','L`','L2'];
         let scrambleMovesR = ['R','R`','R2'];
+        let randomMoveOld;
         for(let i = 0; i < scrambleLength; i++){
           let randomMove = Math.floor(Math.random() * 6) + 1;
           if(randomMove === 1 && randomMoveOld != 1){
-            let move = scrambleMovesU[Math.floor(Math.random() * 3) + 1];
+            let move = scrambleMovesU[Math.floor(Math.random() * 3)];
             scramble.push(move);
-            let randomMoveOld = randomMove;
+            randomMoveOld = randomMove;
           }
-          if(randomMove === 2 && randomMoveOld != 2){
-            let move = scrambleMovesF[Math.floor(Math.random() * 3) + 1];
+          else if(randomMove === 2 && randomMoveOld != 2){
+            let move = scrambleMovesF[Math.floor(Math.random() * 3)];
             scramble.push(move);
-            let randomMoveOld = randomMove;
+            randomMoveOld = randomMove;
           }
-          if(randomMove === 3 && randomMoveOld != 3){
-            let move = scrambleMovesD[Math.floor(Math.random() * 3) + 1];
+          else if(randomMove === 3 && randomMoveOld != 3){
+            let move = scrambleMovesD[Math.floor(Math.random() * 3)];
             scramble.push(move);
-            let randomMoveOld = randomMove;
+            randomMoveOld = randomMove;
           }
-          if(randomMove === 4 && randomMoveOld != 4){
-            let move = scrambleMovesB[Math.floor(Math.random() * 3) + 1];
+          else if(randomMove === 4 && randomMoveOld != 4){
+            let move = scrambleMovesB[Math.floor(Math.random() * 3)];
             scramble.push(move);
-            let randomMoveOld = randomMove;
+            randomMoveOld = randomMove;
           }
-          if(randomMove === 5 && randomMoveOld != 5){
-            let move = scrambleMovesL[Math.floor(Math.random() * 3) + 1];
+          else if(randomMove === 5 && randomMoveOld != 5){
+            let move = scrambleMovesL[Math.floor(Math.random() * 3)];
             scramble.push(move);
-            let randomMoveOld = randomMove;
+            randomMoveOld = randomMove;
           }
-          if(randomMove === 6 && randomMoveOld != 6){
-            let move = scrambleMovesR[Math.floor(Math.random() * 3) + 1];
+          else if(randomMove === 6 && randomMoveOld != 6){
+            let move = scrambleMovesR[Math.floor(Math.random() * 3)];
             scramble.push(move);
-            let randomMoveOld = randomMove;
+            randomMoveOld = randomMove;
+          }
+          else {
+            i--;
+            continue;
           }
 
         }
+        document.querySelector('#scrambles').innerHTML = scramble.join(' ');
       }
 
       //Funcao para iniciar o tempo
@@ -116,7 +126,6 @@
           minutes = 0;
           startTimer();
           verifyTimer = 1;
-          getScramble();
         }
         else if(keyCode == 32 && verifyTimer === 1){
             stopTimer();
@@ -125,9 +134,9 @@
             timesHistory.push(timeNow);
             //timesHistory.forEach(debugArray);
             refreshTimes(timesHistory);
+            getScramble();
         }
       });
-
 
     </script>
   </body>

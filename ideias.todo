@@ -1,0 +1,22 @@
+ctrl-enter: add a new todo item below the current
+ctrl-shift-enter: add a new todo item above the current
+ctrl-d: toggle completion of the task
+ctrl-shift-a: move all completed tasks to the archive section
+alt-c: cancel the selected tasks
+ctrl-shift-s: add/update timestamp for current task
+
+Ideias:
+  ☐ Criar um painel de informacoes
+      //Esse Painel ficara logo embaixo da DIV de scramble
+
+  ☐ Dar a possibilidade do cliente remover alguns tempos antigos
+      //Para isso, posso colocar os tempos dentro de tags <a>, cada tempo dentro
+        de uma tag dessa, pra quando o usuario clicar no tempo, o tempo ser
+        deletado.
+
+  ☐ Criar dentro do painel de informacoes, um lugar onde tenha a informacao do
+     menor tempo feito pelo usuario
+
+  ☐ Criar um sistema para calcular medias (avg5, avg12, avg TOTAL)
+  ☐ Armazenar todos os tempos para que quando atualize a pagina ou entre denovo, nao perca-os
+      //Para isso, tentar usar cookies com javaScript, ou banco de dados com php ou node.js(boa sorte com node.js!)
