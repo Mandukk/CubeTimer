@@ -1,6 +1,6 @@
 # CubeTimer
 
-https://mandukk.github.io/CubeTimer/
+https://luizberger.github.io/CubeTimer/
 
 A countdown timer for Rubiks cube!  
 [PT]  
